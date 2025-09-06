@@ -16,6 +16,7 @@ function AddStudent() {
         const db = getDatabase(app);
         console.log(RollNo,name,age,email);
         set(ref(db,'student/'+RollNo),{
+            studentRollNo: RollNo,
             studentName: name,
             studentAge: age,
             studentEmail: email
