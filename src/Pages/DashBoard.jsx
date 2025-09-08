@@ -5,7 +5,7 @@ import StudentList from './StudentList'
 function DashBoard() {
     return (
         <div className='flex flex-row'>
-            <div className='w-2/5 md:w-1/5 bg-gray-300 h-screen flex flex-col items-center'>
+            <div className='w-2/5 md:w-1/5 bg-gray-300 flex flex-col items-center'>
                 <h1 className='text-2xl font-bold bg-white w-full text-center p-4'>Side Nav</h1>
                 <Link to='/add-student'
                 className='font-semibold w-full flex justify-center border-b p-4'
@@ -13,7 +13,7 @@ function DashBoard() {
                 Add Student
                 </Link>
             </div>
-            <div className='w-full bg-gray-100 h-screen flex flex-col items-center'>
+            <div className='w-full bg-gray-100 flex flex-col items-center'>
                 <h1 className='text-2xl font-bold bg-white w-full text-center p-4 border'>Student-List</h1>
                 <StudentList/>
             </div>

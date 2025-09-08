@@ -1,7 +1,8 @@
 import React from 'react'
 import BackTo from '../components/BackTo'
 import { useNavigate, useParams } from 'react-router-dom';
-import { getDatabase,ref,remove } from 'firebase/database';
+import { getDatabase, ref, remove } from 'firebase/database';
+// import { getStorage, ref as storageRef, deleteObject } from 'firebase/storage';
 import { app } from '../Firebase';
 
 function DeleteStudent() {
@@ -9,9 +10,19 @@ function DeleteStudent() {
     const { id } = useParams();
     const deleteStudent = () => {
         const db = getDatabase(app);
-        const studentRef = ref(db,'student/'+ id);
+        const studentRef = ref(db, 'student/' + id);
+        // const storage = getStorage(app);
+        // const myRef = storageRef(storage, 'images/' + id)
+        // deleteObject(myRef).then(() => {
+        //     remove(studentRef).then(() => {
+        //         navigate('/');
+        //     }).catch((error) => {
+        //         alert(error);
+        //     })
+        // })
+
         remove(studentRef).then(() => {
-            navigate('/student-list');
+            navigate('/');
         }).catch((error) => {
             alert(error);
         })
@@ -32,7 +43,7 @@ function DeleteStudent() {
                             Cancel
                         </button>
                         <button className='bg-red-500 text-white px-4 py-2 rounded-lg mt-4 hover:bg-red-600'
-                        onClick={deleteStudent}
+                            onClick={deleteStudent}
                         >
                             Yes, Delete Student
                         </button>

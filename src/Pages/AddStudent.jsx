@@ -1,31 +1,46 @@
 import React, { useState } from 'react'
 import BackTo from '../components/BackTo'
-import {getDatabase,ref,set} from 'firebase/database'
+import { getDatabase, ref, set } from 'firebase/database'
 import { app } from '../Firebase';
 import { useNavigate } from 'react-router-dom';
+// import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 function AddStudent() {
-    const [RollNo,setRollNo] = useState('');
-    const [name,setName] = useState('');
-    const [age,setAge] = useState('');
-    const [email,setEmail] = useState('');
+    const [RollNo, setRollNo] = useState('');
+    const [name, setName] = useState('');
+    const [age, setAge] = useState('');
+    const [email, setEmail] = useState('');
+    // const [selectedFile, setSelectedFile] = useState(null);
     const navigate = useNavigate();
 
-    const handleAddStudent = (e) => {
+    // const handleImageUpload = (e) => {
+    //     const file = e.target.files[0];
+    //     setSelectedFile(file);
+    // }
+
+    const handleAddStudent = async (e) => {
         e.preventDefault();
         const db = getDatabase(app);
-        console.log(RollNo,name,age,email);
-        set(ref(db,'student/'+RollNo),{
+        // const storage = getStorage(app);
+        // const myref = storageRef(storage, `images/${RollNo}`)
+        // await uploadBytes(myref,selectedFile)
+
+        // const imageURL =await getDownloadURL(myref);
+        // console.log("Image URL: ",imageURL);
+
+        console.log(RollNo, name, age, email);
+        set(ref(db, 'student/' + RollNo), {
             studentRollNo: RollNo,
             studentName: name,
             studentAge: age,
-            studentEmail: email
+            studentEmail: email,
+            // imageURL: imageURL
         })
         setRollNo('');
         setName('');
         setAge('');
         setEmail('');
-        navigate('/student-list');
+        navigate('/');
     }
 
     return (
@@ -54,6 +69,9 @@ function AddStudent() {
 
                 <label className="mb-2 font-bold">Student Email:</label>
                 <input type="email" placeholder='Enter student email' value={email} onChange={(e) => setEmail(e.target.value)} className="border rounded-lg border-gray-400 p-2 mb-4" />
+
+                <label className="mb-2 font-bold">Student Image:</label>
+                {/* <input onChange={handleImageUpload} type="file" /> */}
 
                 <button onClick={handleAddStudent} className="bg-blue-500 text-white p-2 rounded-lg">Add Student</button>
             </div>

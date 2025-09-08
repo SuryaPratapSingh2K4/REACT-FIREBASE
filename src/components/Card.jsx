@@ -9,6 +9,7 @@ function Card({ items, values }) {
             <h1 className='font-bold'>Student Name : <span className='font-normal'>{values.studentName}</span></h1>
             <h1 className='font-bold'>Student Email : <span className='font-normal'>{values.studentEmail}</span></h1>
             <h1 className='font-bold'>Student Age : <span className='font-normal'>{values.studentAge}</span></h1>
+            {/* <img src={values.imageURL} alt={values.studentName} className='w-32 h-32 object-cover mt-2 rounded-full'/> */}
             <div className='flex gap-2'>
                 <Link to={`/delete-student/${items}`}
                     className='text-black rounded-full py-1 px-4 text-lg hover:bg-red-500 hover:text-white border border-red-500 mt-4'

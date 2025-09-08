@@ -26,7 +26,7 @@ function EditStudent() {
             studentAge: age,
             studentEmail: email
         }).then(() => {
-            navigate('/student-list');
+            navigate('/');
         }).catch((error) => {
             alert(error);
         })
