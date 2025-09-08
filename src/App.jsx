@@ -4,6 +4,8 @@ import { BrowserRouter as Router } from "react-router-dom"
 import AddStudent from "./Pages/AddStudent"
 import StudentList from "./Pages/StudentList"
 import NotFound from "./components/NotFound"
+import DeleteStudent from "./Pages/DeleteStudent"
+import EditStudent from "./Pages/EditStudent"
 
 
 function App() {
@@ -13,7 +15,9 @@ function App() {
       <Routes>
         <Route path='/' element={<DashBoard />}/>
         <Route path='/add-student' element={<AddStudent />}/>
+        <Route path="/edit-student/:id" element={<EditStudent/>}/>
         <Route path='/student-list' element={<StudentList />}/>
+        <Route path='/delete-student/:id' element={<DeleteStudent/>}/>
         <Route path="/*" element={<NotFound/>}/>
       </Routes>
     </Router>

@@ -18,12 +18,7 @@ function StudentList() {
     }, [])
     return (
         <div className='flex flex-col'>
-            <div className="w-full h-20 flex items-center justify-between bg-gray-300 relative">
-                <div className="absolute left-4">
-                    <BackTo />
-                </div>
-                <h1 className="mx-auto text-2xl font-bold">Students List</h1>
-            </div>
+            
 
             <div className='p-4'>
                 {

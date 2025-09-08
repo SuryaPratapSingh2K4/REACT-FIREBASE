@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import StudentList from './StudentList'
 
 function DashBoard() {
     return (
@@ -11,14 +12,10 @@ function DashBoard() {
                 >
                 Add Student
                 </Link>
-                <Link to='/student-list'
-                className='font-semibold w-full flex justify-center border-b p-4'
-                >
-                Student List
-                </Link>
             </div>
             <div className='w-full bg-gray-100 h-screen flex flex-col items-center'>
-                <h1 className='text-2xl font-bold bg-white w-full text-center p-4 border'>Main Content</h1>
+                <h1 className='text-2xl font-bold bg-white w-full text-center p-4 border'>Student-List</h1>
+                <StudentList/>
             </div>
         </div>
     )
