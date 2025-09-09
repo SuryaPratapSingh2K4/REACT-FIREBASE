@@ -1,8 +1,9 @@
-import React, {  useState } from 'react'
+import React, { useState } from 'react'
 import BackTo from '../components/BackTo'
 import { getDatabase, ref, update } from 'firebase/database'
 import { app } from '../Firebase';
 import { useLocation, useNavigate } from 'react-router-dom';
+// import { getStorage, ref as refStorage, getDownloadURL, uploadBytes } from 'firebase/storage';
 
 function EditStudent() {
     const navigate = useNavigate();
@@ -12,24 +13,64 @@ function EditStudent() {
     const [name, setName] = useState(location.state[1].studentName);
     const [age, setAge] = useState(location.state[1].studentAge);
     const [email, setEmail] = useState(location.state[1].studentEmail);
+    // const [selectedFile, setSelectedFile] = useState(location.state[1].imageURL);
 
     console.log(location.state);
-    
 
-    const handleUpdateStudent = (e) => {
+    // const handleImageUpdate = (e) => {
+    //     const file = e.target.files[0];
+    //     setSelectedFile(file);
+    // }
+
+
+    const handleUpdateStudent = async (e) => {
         e.preventDefault();
         const db = getDatabase(app);
-        const myStudentRef = ref(db,'student/'+location.state[0]);
-        update(myStudentRef,{
+        const myStudentRef = ref(db, 'student/' + location.state[0]);
+        update(myStudentRef, {
             studentRollNo: RollNo,
             studentName: name,
             studentAge: age,
-            studentEmail: email
+            studentEmail: email,
         }).then(() => {
             navigate('/');
         }).catch((error) => {
             alert(error);
         })
+        // if (selectedFile) {
+        //     const db = getDatabase(app);
+        //     const storage = getStorage(app);
+        //     const myStudentRef = ref(db, 'student/' + location.state[0]);
+        //     const myref = refStorage(storage, `images/${location.state[0]}`);
+        //     await uploadBytes(myref, selectedFile)
+        //     const imageURL = await getDownloadURL(myref);
+        //     console.log("Image URL: ", imageURL);
+        //     update(myStudentRef, {
+        //         studentRollNo: RollNo,
+        //         studentName: name,
+        //         studentAge: age,
+        //         studentEmail: email,
+        //         imageURL: imageURL
+        //     }).then(() => {
+        //         navigate('/');
+        //     }).catch((error) => {
+        //         alert(error);
+        //     })
+        // } else {
+        //     const db = getDatabase(app);
+        //     const myStudentRef = ref(db, 'student/' + location.state[0]);
+
+        //     update(myStudentRef, {
+        //         studentRollNo: RollNo,
+        //         studentName: name,
+        //         studentAge: age,
+        //         studentEmail: email,
+        //     }).then(() => {
+        //         navigate('/');
+        //     }).catch((error) => {
+        //         alert(error);
+        //     })
+        // }
     }
 
     return (
@@ -53,6 +94,9 @@ function EditStudent() {
 
                 <label className="mb-2 font-bold">Student Email:</label>
                 <input type="email" placeholder='Enter student email' value={email} onChange={(e) => setEmail(e.target.value)} className="border rounded-lg border-gray-400 p-2 mb-4" />
+
+                {/* <label>Image Upload</label>
+                <input type="file" onChange={handleImageUpdate} /> */}
 
                 <button onClick={handleUpdateStudent} className="bg-blue-500 text-white p-2 rounded-lg">Update Student Details</button>
             </div>
