@@ -12,6 +12,12 @@ function DashBoard() {
                 >
                 Add Student
                 </Link>
+                <Link to='/add-faculty' className='font-semibold w-full flex justify-center border-b p-4'>
+                Add Faculty
+                </Link>
+                <Link to='/faculty-list' className='font-semibold w-full flex justify-center border-b p-4'>
+                Faculty List
+                </Link>
             </div>
             <div className='w-full bg-gray-100 flex flex-col items-center'>
                 <h1 className='text-2xl font-bold bg-white w-full text-center p-4 border'>Student-List</h1>
