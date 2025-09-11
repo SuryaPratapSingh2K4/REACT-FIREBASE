@@ -15,10 +15,10 @@ function AddFaculty() {
         console.log(AdminNo,name,age,email);
         const db = getFirestore(app);
         const docRef = await addDoc(collection(db,'Faculty'),{
-            "Faculty Admin-No": AdminNo,
-            "Faculty Name": name,
-            "Faculty Age": age,
-            "Faculty email": email
+            "FacultyAdminNo": AdminNo,
+            "FacultyName": name,
+            "FacultyAge": age,
+            "Facultyemail": email
         })
         console.log(docRef,docRef.id);
         navigate('/')

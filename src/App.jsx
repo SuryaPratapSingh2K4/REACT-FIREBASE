@@ -8,6 +8,7 @@ import DeleteStudent from "./Pages/DeleteStudent"
 import EditStudent from "./Pages/EditStudent"
 import AddFaculty from "./Pages/AddFaculty"
 import FacultList from "./Pages/FacultList"
+import DeleteFacultyList from "./Pages/DeleteFacultyList"
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path='/delete-student/:id' element={<DeleteStudent />} />
         <Route path="/add-faculty" element={<AddFaculty />} />
         <Route path="/faculty-list" element={<FacultList />} />
+        <Route path="/delete-faculty/:id" element={<DeleteFacultyList/>}/>
         <Route path="/*" element={<NotFound />} />
       </Routes>
     </Router>
