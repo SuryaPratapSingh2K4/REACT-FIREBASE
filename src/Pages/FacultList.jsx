@@ -4,7 +4,7 @@ import { getFirestore, collection, getDocs } from 'firebase/firestore'
 import FacultyCard from '../components/FacultyCard'
 
 function FacultList() {
-    const [facultydata,setFacultyData] = useState([])
+    const [Facultydata,setFacultyData] = useState(null)
     useEffect(() => {
         info();
     }, [])
@@ -21,15 +21,15 @@ function FacultList() {
     }
     return (
         <div className='flex flex-col'>
-            <h1 className='font-bold text-center mt-8 text-2xl'>Facult List</h1>
+            <h1 className='font-bold text-center mt-8 text-2xl'>Faculty List</h1>
 
             <div className='p-4'>
                 {
-                    facultydata ?
+                    Facultydata && Facultydata.length > 0 ?
                         (
                             <div>
                                 {
-                                    facultydata.map((faculty) => (
+                                    Facultydata.map((faculty) => (
                                         <div key={faculty.id}>
                                             <FacultyCard fdata={faculty}/>
                                         </div>
