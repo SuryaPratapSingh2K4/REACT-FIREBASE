@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { app } from '../Firebase'
 import { getFirestore, collection, getDocs } from 'firebase/firestore'
 import FacultyCard from '../components/FacultyCard'
+import BackTo from '../components/BackTo'
 
 function FacultList() {
     const [Facultydata,setFacultyData] = useState(null)
@@ -20,8 +21,9 @@ function FacultList() {
         setFacultyData(data)
     }
     return (
-        <div className='flex flex-col'>
-            <h1 className='font-bold text-center mt-8 text-2xl'>Faculty List</h1>
+        <div className='flex flex-col p-4'>
+            <BackTo/>
+            <h1 className='font-bold text-center mb-4 text-2xl'>Faculty List</h1>
 
             <div className='p-4'>
                 {

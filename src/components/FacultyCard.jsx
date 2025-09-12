@@ -1,7 +1,8 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
-function FacultyCard({fdata}) {
+function FacultyCard({ fdata }) {
+    const navigate = useNavigate();
     return (
         <div className='cursor-pointer border p-4 mb-4 rounded-lg shadow-lg bg-white'>
             <h1 className='font-bold'>Faculty Admin No : <span className='font-normal'>{fdata.FacultyAdminNo}</span></h1>
@@ -17,11 +18,11 @@ function FacultyCard({fdata}) {
                 </Link>
 
 
-                {/* <button className='text-black rounded-full py-1 px-4 text-lg hover:bg-blue-500 hover:text-white border border-blue-500 mt-4'
-                    onClick={() => { navigate(`/edit-student/${items}`, { state: [items, values] }) }}
+                <button className='text-black rounded-full py-1 px-4 text-lg hover:bg-blue-500 hover:text-white border border-blue-500 mt-4'
+                    onClick={() => { navigate(`/edit-faculty/${fdata.id}`, { state: fdata }) }}
                 >
                     Edit
-                </button> */}
+                </button>
 
             </div>
         </div>

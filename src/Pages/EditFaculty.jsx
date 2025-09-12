@@ -1,27 +1,36 @@
 import React, { useState } from 'react'
-import BackTo from '../components/BackTo';
-import { getFirestore,addDoc,collection } from 'firebase/firestore';
-import { app } from '../Firebase';
+// import { Navigate } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import BackTo from '../components/BackTo';
+import { useLocation } from 'react-router-dom';
+import { getFirestore,doc,updateDoc } from 'firebase/firestore';
+import { app } from '../Firebase';
 
-function AddFaculty() {
-    const [AdminNo, setAdminNo] = useState('');
-    const [name, setName] = useState('');
-    const [age, setAge] = useState('');
-    const [email, setEmail] = useState('');
+function EditFaculty() {
     const navigate = useNavigate();
-    const handleFacultyMember = async (e) => {
+    const location = useLocation();
+    console.log(location.state);
+    const [AdminNo, setAdminNo] = useState(location.state.FacultyAdminNo);
+    const [name, setName] = useState(location.state.FacultyName);
+    const [age, setAge] = useState(location.state.FacultyAge);
+    const [email, setEmail] = useState(location.state.Facultyemail);
+
+    const UpdateFacultyMember = async (e) => {
         e.preventDefault();
-        console.log(AdminNo,name,age,email);
-        const db = getFirestore(app);
-        const docRef = await addDoc(collection(db,'Faculty'),{
-            "FacultyAdminNo": AdminNo,
-            "FacultyName": name,
-            "FacultyAge": age,
-            "Facultyemail": email
-        })
-        console.log(docRef,docRef.id);
-        navigate('/faculty-list')
+        const db = getFirestore(app)
+        const docref = doc(db,'Faculty',location.state.id)
+        try {
+            await updateDoc(docref,{
+                FacultyAdminNo: AdminNo,
+                FacultyName: name,
+                FacultyAge: age,
+                Facultyemail: email
+            })
+            navigate('/faculty-list');
+        } catch (error) {
+            console.log(error);
+            
+        }
     }
     return (
         <div className='flex flex-col'>
@@ -48,11 +57,11 @@ function AddFaculty() {
                 {/* <label className="mb-2 font-bold">Student Image:</label> */}
                 {/* <input onChange={handleImageUpload} type="file" /> */}
 
-                <button onClick={handleFacultyMember} className="bg-blue-500 text-white p-2 rounded-lg">Add Faculty</button>
+                <button onClick={UpdateFacultyMember} className="bg-blue-500 text-white p-2 rounded-lg">Update Faculty</button>
             </div>
 
         </div>
     )
 }
 
-export default AddFaculty
+export default EditFaculty

@@ -9,6 +9,7 @@ import EditStudent from "./Pages/EditStudent"
 import AddFaculty from "./Pages/AddFaculty"
 import FacultList from "./Pages/FacultList"
 import DeleteFacultyList from "./Pages/DeleteFacultyList"
+import EditFaculty from "./Pages/EditFaculty"
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route path="/add-faculty" element={<AddFaculty />} />
         <Route path="/faculty-list" element={<FacultList />} />
         <Route path="/delete-faculty/:id" element={<DeleteFacultyList/>}/>
+        <Route path="/edit-faculty/:id" element={<EditFaculty/>}/>
         <Route path="/*" element={<NotFound />} />
       </Routes>
     </Router>
